@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'Maven 3.8.6'
+        jdk 'JDK 11'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+        
+        stage('UI Tests') {
+            steps {
+                sh 'mvn test -Dcucumber.filter.tags="@ui"'
+            }
+        }
+        
+        stage('API Tests') {
+            steps {
+                sh 'mvn test -Dtest=FlightReservationApiTest'
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Publish Cucumber reports
+            cucumber buildStatus: 'UNSTABLE',
+                    fileIncludePattern: '**/cucumber.json',
+                    jsonReportDirectory: 'target'
+                    
+            // Publish TestNG reports
+            step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
+        }
+    }
+}

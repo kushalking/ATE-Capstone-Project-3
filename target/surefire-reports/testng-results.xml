@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-01-19T02:21:47 IST" name="Surefire suite" finished-at="2025-01-19T02:21:58 IST" duration-ms="10892">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.TestRunner@1139b2f3]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2025-01-19T02:21:47 IST" name="Surefire test" finished-at="2025-01-19T02:21:58 IST" duration-ms="10892">
+      <class name="api.FlightReservationApiTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:api.FlightReservationApiTest@35ef1869]" started-at="2025-01-19T02:21:56 IST" name="setup" finished-at="2025-01-19T02:21:56 IST" duration-ms="336" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="testSearchFlights()[pri:1, instance:api.FlightReservationApiTest@35ef1869]" started-at="2025-01-19T02:21:56 IST" name="testSearchFlights" finished-at="2025-01-19T02:21:58 IST" duration-ms="1847" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSearchFlights -->
+      </class> <!-- api.FlightReservationApiTest -->
+      <class name="runner.TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runner.TestRunner@1139b2f3]" started-at="2025-01-19T02:21:47 IST" name="setUpClass" finished-at="2025-01-19T02:21:48 IST" duration-ms="476" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@63a84bb6]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.TestRunner@1139b2f3]" started-at="2025-01-19T02:21:48 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-01-19T02:21:56 IST" duration-ms="8160" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Book a flight with valid passenger details"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Flight Booking on BlazeDemo"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runner.TestRunner@1139b2f3]" started-at="2025-01-19T02:21:56 IST" name="tearDownClass" finished-at="2025-01-19T02:21:56 IST" duration-ms="44" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- runner.TestRunner -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>
