@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import java.io.File;
+import java.util.UUID;
 
 public class WebDriverManager {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -29,11 +30,16 @@ public class WebDriverManager {
             default:
                 ChromeOptions options = new ChromeOptions();
                 
-                // Create a unique user data directory
+                // Generate a truly unique directory using UUID
                 String userDataDir = System.getProperty("java.io.tmpdir") + 
-                    File.separator + "chrome_user_data_" + Thread.currentThread().getId();
+                    File.separator + "chrome_user_data_" + UUID.randomUUID().toString();
                 
                 options.addArguments("user-data-dir=" + userDataDir);
+                
+                // Additional options to prevent session conflicts
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                
                 driver.set(new ChromeDriver(options));
                 break;
         }
