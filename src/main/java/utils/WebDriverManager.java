@@ -33,8 +33,9 @@ public class WebDriverManager {
                 ChromeOptions options = new ChromeOptions();
                 
                 // Generate a truly unique directory using UUID
-                String userDataDir = System.getProperty("java.io.tmpdir") + 
-                    File.separator + "chrome_user_data_" + UUID.randomUUID().toString();
+                userDataDir = System.getProperty("java.io.tmpdir") + 
+                File.separator + "chrome_user_data_" + UUID.randomUUID().toString() + 
+                "_" + System.currentTimeMillis();
                 
                 options.addArguments("user-data-dir=" + userDataDir);
                 
