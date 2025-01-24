@@ -9,6 +9,8 @@ import java.util.UUID;
 
 public class WebDriverManager {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    // Declare userDataDir as a class variable
+    private static String userDataDir;
     
     public static WebDriver getDriver() {
         if (driver.get() == null) {
