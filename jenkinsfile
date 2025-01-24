@@ -52,8 +52,8 @@ post {
                     [key: 'cucumber', value: 'PASSED']
                 ],
                 reportTitle: 'Cucumber Reports',
-                fileIncludePattern: '**/cucumber.json',
-                jsonReportDirectory: 'target'
+                fileIncludePattern: '**/CucumberTestReport.json',
+                jsonReportDirectory: 'target/cucumber-reports'
         
         // Publish TestNG reports
         junit '**/surefire-reports/*.xml'
