@@ -1,9 +1,10 @@
 package utils;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import java.io.File;
 
 public class WebDriverManager {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -26,7 +27,14 @@ public class WebDriverManager {
                 driver.set(new EdgeDriver());
                 break;
             default:
-                driver.set(new ChromeDriver());
+                ChromeOptions options = new ChromeOptions();
+                
+                // Create a unique user data directory
+                String userDataDir = System.getProperty("java.io.tmpdir") + 
+                    File.separator + "chrome_user_data_" + Thread.currentThread().getId();
+                
+                options.addArguments("user-data-dir=" + userDataDir);
+                driver.set(new ChromeDriver(options));
                 break;
         }
         
