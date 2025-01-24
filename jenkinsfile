@@ -48,7 +48,9 @@ post {
                 failedScenariosNumber: -1, 
                 failedStepsNumber: -1, 
                 skippedStepsNumber: -1, 
-                classifications: 'PASSED',
+                classifications: [
+                    [key: 'cucumber', value: 'PASSED']
+                ],
                 reportTitle: 'Cucumber Reports',
                 fileIncludePattern: '**/cucumber.json',
                 jsonReportDirectory: 'target'
