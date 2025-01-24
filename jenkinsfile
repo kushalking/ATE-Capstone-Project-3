@@ -10,11 +10,10 @@ pipeline {
          stage('Prepare WebDriver') {
             steps {
         // Kill existing Chrome processes
-        sh 'pkill -f chrome'
-        sh 'pkill -f chromedriver'
-        
-        // Create symbolic link
-        sh 'sudo ln -s /usr/bin/google-chrome-stable /usr/bin/google-chrome'
+            sh     '''
+                        pkill -f chrome || true
+                        pkill -f chromedriver || true
+                    '''
     }
 }
         stage('Checkout') {
