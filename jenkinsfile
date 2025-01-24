@@ -16,6 +16,7 @@ pipeline {
         // Create symbolic link
         sh 'sudo ln -s /usr/bin/google-chrome-stable /usr/bin/google-chrome'
     }
+}
         stage('Checkout') {
             steps {
                 checkout scm
