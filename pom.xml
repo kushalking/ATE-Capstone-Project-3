@@ -3,6 +3,19 @@
   <groupId>Ate.capstone.project</groupId>
   <artifactId>capstone-3</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.2.5</version> <!-- You can use a newer version if needed -->
+            <configuration>
+                <source>17</source> <!-- Set to the Java version you are using, e.g., 11 -->
+                <target>17</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
   <dependencies>
   <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
