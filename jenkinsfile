@@ -42,15 +42,20 @@ pipeline {
         }
     }
     
-    post {
-        always {
-            // Publish Cucumber reports
-            cucumber buildStatus: 'UNSTABLE',
-                    fileIncludePattern: '**/cucumber.json',
-                    jsonReportDirectory: 'target'
-                    
-            // Publish TestNG reports
-            step([$class: 'Publisher', reportFilenamePattern: '**/testng-results.xml'])
-        }
+  post {
+    always {
+        // Cucumber reporting
+        cucumber failedFeaturesCount: -1, 
+                failedScenariosCount: -1, 
+                failedStepsCount: -1, 
+                skippedStepsCount: -1, 
+                successfulStepsCount: -1, 
+                reportTitle: 'Cucumber Reports',
+                fileIncludePattern: '**/cucumber.json',
+                jsonReportDirectory: 'target'
+        
+        // Publish TestNG reports
+        junit '**/surefire-reports/*.xml'
     }
+}
 }
