@@ -9,11 +9,12 @@ pipeline {
     stages {
          stage('Prepare WebDriver') {
             steps {
-        // Kill existing Chrome processes
-            sh     '''
-                        pkill -f chrome || true
-                        pkill -f chromedriver || true
-                    '''
+        // More aggressive cleanup (includes processes owned by other users if Jenkins has permissions)
+                sh '''
+                    ps aux | grep -i chrome | awk '{print $2}' | xargs kill -9 || true
+                    ps aux | grep -i chromedriver | awk '{print $2}' | xargs kill -9 || true
+                    rm -rf /tmp/chrome_user_data_* # Remove old user data dirs
+                '''
     }
 }
         stage('Checkout') {
