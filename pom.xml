@@ -15,18 +15,20 @@
                 <encoding>UTF-8</encoding>
             </configuration>
         </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.2.5</version>
-            <configuration>
-                <includes>
-                    <include>**/*Test.java</include>
-                </includes>
-                <testFailureIgnore>true</testFailureIgnore>
-                <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-            </configuration>
-        </plugin>
+     <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.2.5</version>
+    <configuration>
+        <testFailureIgnore>true</testFailureIgnore>
+        <includes>
+            <include>**/*Runner.java</include>
+        </includes>
+        <systemPropertyVariables>
+            <cucumber.plugin>json:target/cucumber.json</cucumber.plugin>
+        </systemPropertyVariables>
+    </configuration>
+</plugin>
         <plugin>
             <groupId>net.masterthought</groupId>
             <artifactId>maven-cucumber-reporting</artifactId>
