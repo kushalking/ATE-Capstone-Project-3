@@ -42,14 +42,13 @@ pipeline {
         }
     }
     
-  post {
+post {
     always {
-        // Cucumber reporting
-        cucumber failedFeaturesCount: -1, 
-                failedScenariosCount: -1, 
-                failedStepsCount: -1, 
-                skippedStepsCount: -1, 
-                successfulStepsCount: -1, 
+        cucumber failedFeaturesNumber: -1, 
+                failedScenariosNumber: -1, 
+                failedStepsNumber: -1, 
+                skippedStepsNumber: -1, 
+                classifications: 'PASSED',
                 reportTitle: 'Cucumber Reports',
                 fileIncludePattern: '**/cucumber.json',
                 jsonReportDirectory: 'target'
