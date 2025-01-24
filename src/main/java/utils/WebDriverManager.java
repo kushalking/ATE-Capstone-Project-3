@@ -45,6 +45,7 @@ public class WebDriverManager {
         }
         
         driver.get().manage().window().maximize();
+        System.out.println("Chrome User Data Directory: " + userDataDir);
     }
     
     public static void quitDriver() {
