@@ -44,26 +44,16 @@ pipeline {
     
 post {
     always {
-        cucumber failedFeaturesNumber: -1, 
-                failedScenariosNumber: -1, 
-                failedStepsNumber: -1, 
-                skippedStepsNumber: -1,  
-                classifications: [
-                    [key: 'cucumber', value: 'PASSED']
-                ],
+        cucumber failedFeaturesNumber: -1,
+                failedScenariosNumber: -1,
+                failedStepsNumber: -1,
+                skippedStepsNumber: -1,
+                classifications: [[key: 'cucumber', value: 'PASSED']],
                 reportTitle: 'Cucumber Reports',
-                fileIncludePattern: '**/CucumberTestReport.json',
+                fileIncludePattern: '**/cucumber.json',  // Updated pattern
                 jsonReportDirectory: 'target/cucumber-reports'
         
-        // Make sure JUnit doesn't fail the build
         junit allowEmptyResults: true, testResults: '**/target/surefire-reports/*.xml'
     }
-
-    success {
-        script {
-            currentBuild.result = 'SUCCESS'
-        }
-    }
 }
-
 }
