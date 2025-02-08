@@ -47,10 +47,8 @@ post {
         cucumber failedFeaturesNumber: -1, 
                  failedScenariosNumber: -1, 
                  failedStepsNumber: -1, 
-                 skippedStepsNumber: -1,  // Allow ALL skipped steps
-                 classifications: [
-                     [key: 'cucumber', value: 'PASSED']
-                 ],
+                 skippedStepsNumber: -1,  
+                 classifications: [[key: 'cucumber', value: 'PASSED']],
                  reportTitle: 'Cucumber Reports',
                  fileIncludePattern: '**/CucumberTestReport.json',
                  jsonReportDirectory: 'target/cucumber-reports'
@@ -58,29 +56,17 @@ post {
         junit allowEmptyResults: true, testResults: '**/target/surefire-reports/*.xml'
     }
 
-    success {
-        script {
-            echo "✅ Build is successful."
-        }
-    }
-
     unstable {
         script {
             echo "⚠️ Build is UNSTABLE, forcing it to SUCCESS."
-            currentBuild.result = 'SUCCESS'  // 🔥 Force status override
+            currentBuild.result = 'SUCCESS'  
         }
     }
 
     failure {
         script {
-            echo "❌ Build failed, but we are converting it to UNSTABLE."
-            currentBuild.result = 'UNSTABLE'  // 🔥 Convert failures
-        }
-    }
-
-    changed {
-        script {
-            echo "🔄 Build status has changed!"
+            echo "❌ Build failed, converting it to UNSTABLE."
+            currentBuild.result = 'UNSTABLE'  
         }
     }
 }
