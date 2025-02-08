@@ -44,11 +44,12 @@ pipeline {
     
 post {
     always {
-        publishCucumberReports(
+        step([
+            $class: 'CucumberReportPublisher',
             fileIncludePattern: '**/target/cucumber-reports/*.json',
             jsonReportDirectory: 'target/cucumber-reports',
             reportTitle: 'Cucumber Test Report'
-        )
+        ])
 
         // Publish JUnit reports (if using TestNG)
         junit '**/target/surefire-reports/*.xml'
