@@ -44,19 +44,18 @@ pipeline {
     
 post {
     always {
-        cucumber failedFeaturesNumber: -1, 
-                failedScenariosNumber: -1, 
-                failedStepsNumber: -1, 
-                skippedStepsNumber: -1, 
-                classifications: [
-                    [key: 'cucumber', value: 'PASSED']
-                ],
-                reportTitle: 'Cucumber Reports',
-                fileIncludePattern: '**/CucumberTestReport.json',
-                jsonReportDirectory: 'target/cucumber-reports'
-        
+        publishCucumberReports(
+            fileIncludePattern: '**/target/cucumber-reports/*.json',
+            jsonReportDirectory: 'target/cucumber-reports',
+            reportTitle: 'Cucumber Test Report',
+            classifications: [
+                [key: 'Status', value: 'PASSED']
+            ]
+        )
+
         // Publish TestNG reports
-        junit '**/surefire-reports/*.xml'
+        junit '**/target/surefire-reports/*.xml'
     }
+}
 }
 }
