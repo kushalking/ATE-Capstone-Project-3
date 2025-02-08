@@ -44,16 +44,13 @@ pipeline {
     
 post {
     always {
-        publishCucumberReports(
+        cucumber(
             fileIncludePattern: '**/target/cucumber-reports/*.json',
             jsonReportDirectory: 'target/cucumber-reports',
-            reportTitle: 'Cucumber Test Report',
-            classifications: [
-                [key: 'Status', value: 'PASSED']
-            ]
+            reportTitle: 'Cucumber Test Report'
         )
 
-        // Publish TestNG reports
+        // Publish JUnit TestNG reports
         junit '**/target/surefire-reports/*.xml'
     }
 }
