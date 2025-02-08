@@ -44,15 +44,18 @@ pipeline {
     
 post {
     always {
-        step([
-            $class: 'CucumberReportPublisher',
-            fileIncludePattern: 'CucumberTestReport.json',  // Exact file name
-            jsonReportDirectory: 'target/cucumber-reports',
-            reportTitle: 'Cucumber Test Report'
-        ])
-
+        cucumber failedFeaturesNumber: -1, 
+                failedScenariosNumber: -1, 
+                failedStepsNumber: -1, 
+                skippedStepsNumber: -1,  // Allow skipped steps
+                classifications: [
+                    [key: 'cucumber', value: 'PASSED']
+                ],
+                reportTitle: 'Cucumber Reports',
+                fileIncludePattern: '**/CucumberTestReport.json',
+                jsonReportDirectory: 'target/cucumber-reports'
+        
         junit '**/target/surefire-reports/*.xml'
     }
 }
-
 }
