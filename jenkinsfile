@@ -54,21 +54,33 @@ post {
                  reportTitle: 'Cucumber Reports',
                  fileIncludePattern: '**/CucumberTestReport.json',
                  jsonReportDirectory: 'target/cucumber-reports'
-        
+
         junit allowEmptyResults: true, testResults: '**/target/surefire-reports/*.xml'
+    }
+
+    success {
+        script {
+            echo "✅ Build is successful."
+        }
     }
 
     unstable {
         script {
-            echo "Build is UNSTABLE, forcing it to SUCCESS."
-            currentBuild.result = 'SUCCESS'  // 🔥 Override UNSTABLE status
+            echo "⚠️ Build is UNSTABLE, forcing it to SUCCESS."
+            currentBuild.result = 'SUCCESS'  // 🔥 Force status override
         }
     }
 
     failure {
         script {
-            echo "Build failed, setting status to UNSTABLE instead of FAILURE."
-            currentBuild.result = 'UNSTABLE'  // 🔥 Prevents full failure
+            echo "❌ Build failed, but we are converting it to UNSTABLE."
+            currentBuild.result = 'UNSTABLE'  // 🔥 Convert failures
+        }
+    }
+
+    changed {
+        script {
+            echo "🔄 Build status has changed!"
         }
     }
 }
